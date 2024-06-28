@@ -1,7 +1,7 @@
 ﻿using EShop.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace EShop.Domain.DbContextApp
+namespace EShop.Application.DbContextApp
 {
     public class ContextDB : DbContext
     {
