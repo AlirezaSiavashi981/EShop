@@ -23,9 +23,4 @@
 	  <ProjectReference Include="..\EShop.Domain\EShop.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Repositories\Implementations\Product\" />
-	  <Folder Include="Repositories\Implementations\Order\" />
-	</ItemGroup>
-
 </Project>

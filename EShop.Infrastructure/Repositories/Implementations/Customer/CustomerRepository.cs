@@ -1,5 +1,8 @@
-﻿namespace EShop.Infrastructure.Repositories.Implementations.Customer;
+﻿using EShop.Domain.Entities;
+using EShop.Infrastructure.DbContextApp;
+namespace EShop.Infrastructure.Repositories.Implementations;
 
-public class CustomerRepository
+public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
 {
+    public CustomerRepository(EShopDbContext context) : base(context) { }
 }

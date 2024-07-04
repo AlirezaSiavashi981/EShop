@@ -2,7 +2,7 @@
 using EShop.Infrastructure.DbContextApp;
 using Microsoft.EntityFrameworkCore;
 
-namespace EShop.Infrastructure.Repositories.Implementations.Generic;
+namespace EShop.Infrastructure.Repositories.Implementations;
 
 public class GenericRepository<T>(EShopDbContext context) : IGenericRepository<T> where T : class
 {
