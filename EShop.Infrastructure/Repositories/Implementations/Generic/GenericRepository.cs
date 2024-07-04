@@ -1,33 +1,41 @@
-﻿using EShop.Domain.Definitions.Generic;
+﻿using EShop.Domain.Entities;
 using EShop.Infrastructure.DbContextApp;
 using Microsoft.EntityFrameworkCore;
 
 namespace EShop.Infrastructure.Repositories.Implementations.Generic;
 
-public class GenericRepository<T>(EShopDbContext context, DbSet<T> dbSet) : IGenericRepository<T> where T : class
+public class GenericRepository<T>(EShopDbContext context) : IGenericRepository<T> where T : class
 {
-    public void Add(T entity, CancellationToken ct)
+    private readonly DbSet<T> _dbSet = context.Set<T>();
+
+    public void Add(T entity)
+    {
+       _dbSet.Add(entity);
+    }
+
+    public void Delete(T entity)
+    {
+        _dbSet.Remove(entity);
+    }
+
+    public Task<T> FindAsync(int id, CancellationToken ct)
     {
         throw new NotImplementedException();
     }
 
-    public void Delete(T entity, CancellationToken ct)
+    public async Task<IEnumerable<T>> GetAllAsync(CancellationToken ct)
     {
-        throw new NotImplementedException();
+        var entities = await _dbSet.ToListAsync(ct);
+        return entities;
     }
 
-    public T FindAsync(int id, CancellationToken ct)
+    public async Task<int> SaveChagesAsync()
     {
-        throw new NotImplementedException();
+        return await context.SaveChangesAsync();
     }
 
-    public IEnumerable<T> GetAllAsync(CancellationToken ct)
+    public async void Update(T entity)
     {
-        throw new NotImplementedException();
-    }
-
-    public void Update(T entity, CancellationToken ct)
-    {
-        throw new NotImplementedException();
+        _dbSet.Update(entity);
     }
 }
